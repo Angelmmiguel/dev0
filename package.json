@@ -1,0 +1,10 @@
+{
+  "name": "dev0",
+  "version": "1.0.0",
+  "description": "A Zero-dependency static file server for development",
+  "main": "index.js",
+  "bin": "./cli.js",
+  "repository": "git@github.com:Angelmmiguel/dev0.git",
+  "author": "Angel M <@_angelmm>",
+  "license": "MIT"
+}
