@@ -3,6 +3,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Errors
+const errors = {
+  ADDRINUSE: "EADDRINUSE"
+};
+
 // Common mime types
 const mimeTypes = {
   ".html": "text/html",
@@ -77,8 +82,18 @@ const dev0 = (folders, { port }) => {
 
   // Started!
   console.log(`Listening on http://${DEFAULT_HOST}:${listenPort}`);
-
   server.listen(listenPort);
+
+  server.on("error", (err) => {
+    switch(err.code) {
+      case errors.ADDRINUSE:
+        console.log(`[ERROR] The port ${listenPort} is already in use. Please, use another one`);
+        break;
+      default:
+        console.log(err);
+        break;
+    }
+  });
 };
 
 // Store default values

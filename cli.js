@@ -22,7 +22,7 @@ const availableArgs = [
       "-h"
     ]
   }
-]
+];
 
 // dev0 arguments
 const folders = [];
@@ -48,11 +48,12 @@ args.forEach(arg => {
     if (currentArg.validate(arg)) {
       options[currentArg.name] = typeof currentArg.parse === "function" ? currentArg.parse(arg) : arg;
     } else {
-      console.log(`Error! ${arg} is not a valid value for ${currentArg.name}`);
+      console.log(`[ERROR] ${arg} is not a valid value for ${currentArg.name}`);
+      process.exit(1);
     }
     currentArg = null
   } else if (arg.startsWith("-")) {
-    console.log(`Error! ${arg} is not a valid argument.`);
+    console.log(`[ERROR] ${arg} is not a valid argument.`);
   } else {
     folders.push(arg);
   }
